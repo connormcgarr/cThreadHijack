@@ -1,0 +1,7 @@
+build:
+	@echo [+] Building cThreadHijack...
+    @cl /nologo /c /GS- "cThreadHijack.c" /Fo"cThreadHijack.o" > NUL
+clean:
+	@echo [+] Cleaning Solution...
+	@del "cThreadHijack.o" /Q
+

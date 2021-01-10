@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30404.54
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cThreadHijack", "cThreadHijack.vcxproj", "{A45B232D-CF92-4061-BFDC-38F4EDF43FC4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A45B232D-CF92-4061-BFDC-38F4EDF43FC4}.Debug|x64.ActiveCfg = Debug|x64
+		{A45B232D-CF92-4061-BFDC-38F4EDF43FC4}.Debug|x64.Build.0 = Debug|x64
+		{A45B232D-CF92-4061-BFDC-38F4EDF43FC4}.Debug|x86.ActiveCfg = Debug|Win32
+		{A45B232D-CF92-4061-BFDC-38F4EDF43FC4}.Debug|x86.Build.0 = Debug|Win32
+		{A45B232D-CF92-4061-BFDC-38F4EDF43FC4}.Release|x64.ActiveCfg = Release|x64
+		{A45B232D-CF92-4061-BFDC-38F4EDF43FC4}.Release|x64.Build.0 = Release|x64
+		{A45B232D-CF92-4061-BFDC-38F4EDF43FC4}.Release|x86.ActiveCfg = Release|Win32
+		{A45B232D-CF92-4061-BFDC-38F4EDF43FC4}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {47947D20-B28F-4C6C-AC4B-62D592C2D883}
+	EndGlobalSection
+EndGlobal

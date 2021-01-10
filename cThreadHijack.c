@@ -247,7 +247,6 @@ void go(char* argc, int len)
 						// Then, "jump over shellcode" by calling the buffer at an offset of the calculation (64 bytes + CONTEXT size)
 
 						// 0xe8 is a near call, which uses RIP as the base address for RVA calculations and dynamically adds the offset specified by shellcodeOffset
-						// Placing at an index of 0 to begin the routine
 						ntContinue[i++] = 0xe8;
 
 						// Subtracting to compensate for the near call opcode (represented by i) and the DWORD used for relative addressing

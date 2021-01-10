@@ -37,13 +37,13 @@ beacon> cThreadHijack 7340 TESTING
 [+] Wrote Beacon shellcode to the remote process!
 
 [+] received output:
-[+] Virtual memory for CreateThread and NtContinue stubs allocated at 0x201f4ab0000 inside of the remote process!
+[+] Virtual memory for CreateThread and NtContinue routines allocated at 0x201f4ab0000 inside of the remote process!
 
 [+] received output:
-[+] Size of NtContinue stub: 48 bytes
+[+] Size of NtContinue routine: 64 bytes
 [+] Size of CONTEXT structure: 1232 bytes
 [+] Size of stack alignment routine: 4
-[+] Size of CreateThread routine: 48
+[+] Size of CreateThread routine: 64
 [+] Size of shellcode: 261632 bytes
 
 [+] received output:
